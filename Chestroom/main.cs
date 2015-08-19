@@ -1,18 +1,18 @@
-﻿using System;
-using Terraria;
-using TShockAPI;
-using TerrariaApi.Server;
-using System.Reflection;
-using System.IO;
-using System.Data;
-using Mono.Data.Sqlite;
+﻿using Mono.Data.Sqlite;
 using MySql.Data.MySqlClient;
-using System.Diagnostics;
 using Newtonsoft.Json;
+using System;
+using System.Data;
+using System.Diagnostics;
+using System.IO;
+using System.Reflection;
+using Terraria;
+using TerrariaApi.Server;
+using TShockAPI;
 
 namespace ChestroomPlugin
 {
-    [ApiVersion(1, 20)]
+    [ApiVersion(1, 21)]
     public class main : TerrariaPlugin
     {
         public static Config config = new Config();

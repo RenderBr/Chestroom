@@ -1,6 +1,6 @@
-﻿using Terraria;
+﻿using System.Text;
+using Terraria;
 using TShockAPI;
-using System.Text;
 using TShockAPI.DB;
 
 namespace ChestroomPlugin

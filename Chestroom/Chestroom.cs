@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Terraria;
+using Terraria.ID;
 using TerrariaApi.Server;
 using TShockAPI;
 
@@ -21,10 +22,10 @@ namespace ChestroomPlugin
         static byte[] walls = new byte[] { 4, 5, 6, 7, 9, 10, 11, 12, 19, 21, 22, 23, 24, 25, 26, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 41, 42, 43, 45, 46, 47, 72, 73, 74, 75, 76, 78, 82, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 109, 110, 113, 114, 115 };
         static short[] chests = new short[] { 1, 3, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22 };
 
-        public static int MaxItems { get { return Main.maxItemTypes + 47; } }
+        public static int MaxItems { get { return ItemID.Count + 47; } }
         public static int ActualMaxItems { get { return MaxItems - ExcludedItems.Length; } }
         public static int MaxChests { get { return (int)Math.Ceiling((decimal)ActualMaxItems / 40); } }
-       public  static int ChestsPerRow { get { return main.config.ChestsPerRow; } }
+       public  static int ChestsPerRow { get { return Plugin.config.ChestsPerRow; } }
         public static int MaxRows { get { return (int)Math.Ceiling((decimal)MaxChests / ChestsPerRow); } }
        public  static int RowWidth { get { return 4 * ChestsPerRow + 2; } }
        public  static int RowHeight { get { return MaxRows * 5 + 1; } }
@@ -38,11 +39,11 @@ namespace ChestroomPlugin
 
         public Chestroom(bool custom)
         {
-            TileId = custom ? main.config.TileId : tiles[rnd.Next(0, tiles.Length)];
-            ChestId = custom ? main.config.ChestId : chests[rnd.Next(0, chests.Length)];
-            BackWall = custom ? main.config.BgWall : walls[rnd.Next(0, walls.Length)];
-            PlatformFrameY = custom ? main.config.pFrameY : platformframey[rnd.Next(0, platformframey.Length)];
-            TorchFrameY = custom ? main.config.tFrameY : torchframey[rnd.Next(0, torchframey.Length)];
+            TileId = custom ? Plugin.config.TileId : tiles[rnd.Next(0, tiles.Length)];
+            ChestId = custom ? Plugin.config.ChestId : chests[rnd.Next(0, chests.Length)];
+            BackWall = custom ? Plugin.config.BgWall : walls[rnd.Next(0, walls.Length)];
+            PlatformFrameY = custom ? Plugin.config.pFrameY : platformframey[rnd.Next(0, platformframey.Length)];
+            TorchFrameY = custom ? Plugin.config.tFrameY : torchframey[rnd.Next(0, torchframey.Length)];
         }
 
 
@@ -61,7 +62,7 @@ namespace ChestroomPlugin
             }
             bool first = true;
             int placed = ChestsPerRow * MaxRows;
-            int chestitem = Main.maxItemTypes - 1;
+            int chestitem = ItemID.Count - 1;
 
 
             for (int y = RowHeight - 1; y >= 0; y--)
@@ -128,7 +129,7 @@ namespace ChestroomPlugin
                     }
                 }
             }
-            if (main.usinginfchests)
+            if (Plugin.usinginfchests)
                 Utils.ConvertToAutoRefill(count - MaxChests, MaxChests);
             return true;
         }

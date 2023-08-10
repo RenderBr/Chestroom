@@ -17,7 +17,7 @@ namespace ChestroomPlugin
                 {
                     for (int j = 0; j < 40; j++)
                         items.Append(c.item[j].netID).Append(",").Append(c.item[j].stack).Append(",").Append(c.item[j].prefix).Append(",");
-                    main.Database.Query("INSERT INTO Chests (X, Y, Account, Items, Flags, WorldID) VALUES (@0, @1, '', @2, @3, @4)",
+                    Plugin.Database.Query("INSERT INTO Chests (X, Y, Account, Items, Flags, WorldID) VALUES (@0, @1, '', @2, @3, @4)",
                         c.x, c.y, items.ToString(0, items.Length - 1), 5, Main.worldID);
                     items.Clear();
                     Main.chest[i] = null;
